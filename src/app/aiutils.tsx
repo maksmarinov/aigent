@@ -3,7 +3,10 @@ import { AIMessage } from "./types";
 import { JSONFilePreset } from "lowdb/node";
 import { v4 as uuidv4 } from "uuid";
 import OpenAI from "openai";
-const openai = new OpenAI();
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY, // Access your API key here.
+});
 
 export type MessageWithMetadata = AIMessage & {
   id: string;
