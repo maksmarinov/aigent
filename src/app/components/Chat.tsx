@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import materialDark from "react-syntax-highlighter/dist/esm/styles/prism/material-dark";
@@ -36,8 +37,19 @@ const markdownComponents = {
 };
 
 export const Chat = ({ messages, isLoading = false }: ChatProps) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [messages, isLoading]);
+
   return (
-    <div className="w-full max-w-[600px] h-full max-h-[850px] overflow-auto bg-gray-700 p-4 rounded-t-md">
+    <div
+      ref={scrollRef}
+      className="w-full max-w-[600px] h-full max-h-[850px] overflow-auto bg-gray-700 p-4 rounded-t-md"
+    >
       {messages.map((msg, index) => {
         // If the sender is 'user', show "YOU"; otherwise, show "ASSISTANT"
         const displaySender = msg.sender === "user" ? "YOU" : "ASSISTANT";
