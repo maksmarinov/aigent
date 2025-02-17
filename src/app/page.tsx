@@ -13,11 +13,9 @@ type ChatMessage = {
 export default function Home() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
 
-  // Helper to normalize the content to a string.
   const normalizeContent = (content: string | any[]): string => {
     if (typeof content === "string") return content;
     if (Array.isArray(content)) {
-      // Assume each array element contains a `content` property or is a string.
       return content
         .map((part) => (typeof part === "string" ? part : part.content || ""))
         .join("");
@@ -25,7 +23,6 @@ export default function Home() {
     return "";
   };
 
-  // On mount, load persisted messages from chatHistory.json.
   useEffect(() => {
     (async () => {
       const persisted = await getMessages();
@@ -40,18 +37,14 @@ export default function Home() {
   const handleSendMessage = async (userMessage: string) => {
     const userPlainMessage: AIMessage = { role: "user", content: userMessage };
 
-    // Update state with user message.
     setMessages((prev) => [...prev, { sender: "user", text: userMessage }]);
 
-    // Persist the user message.
     await addMessages([userPlainMessage]);
 
-    // Retrieve full conversation memory.
     const memory = await getMessages();
 
     const conversationHistory: AIMessage[] = [...memory, userPlainMessage];
 
-    // Pass the full conversation history to askChat.
     const aiResponseText =
       (await askChat({ messages: conversationHistory })) ?? "";
 
@@ -60,18 +53,14 @@ export default function Home() {
       content: aiResponseText,
     };
 
-    // Persist bot message.
     await addMessages([botPlainMessage]);
 
-    // Update state with bot response.
     setMessages((prev) => [...prev, { sender: "bot", text: aiResponseText }]);
   };
 
-  // Function to start a new chat.
   const handleStartNewChat = async () => {
-    // Clear the persisted chat history.
     await clearChatHistory();
-    // Clear local state.
+
     setMessages([]);
   };
 
