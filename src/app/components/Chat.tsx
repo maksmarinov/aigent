@@ -37,14 +37,14 @@ const markdownComponents = {
 
 export const Chat = ({ messages, isLoading = false }: ChatProps) => {
   return (
-    <div className="max-w-max max-h-[800px] overflow-auto bg-gray-700 p-4 rounded-t-md">
+    <div className="w-full max-w-[600px] h-full max-h-[850px] overflow-auto bg-gray-700 p-4 rounded-t-md">
       {messages.map((msg, index) => {
-        // If the sender is 'user', show "YOU", otherwise show "ASSISTANT"
+        // If the sender is 'user', show "YOU"; otherwise, show "ASSISTANT"
         const displaySender = msg.sender === "user" ? "YOU" : "ASSISTANT";
         const isUser = msg.sender === "user";
         const containerClasses = isUser
-          ? "border-1 border-gray-950 bg-gray-900 text-right"
-          : "border-1 border-gray-950 bg-gray-900 text-left";
+          ? "border-2 border-gray-950 bg-gray-900 text-right"
+          : "border-2 border-gray-950 bg-gray-900 text-left";
 
         const content =
           msg.sender !== "user" ? (
@@ -69,7 +69,7 @@ export const Chat = ({ messages, isLoading = false }: ChatProps) => {
         );
       })}
       {isLoading && (
-        <div className="mb-4 p-4 rounded-md border-1 text-black border-gray-600 bg-gray-500 text-left animate-pulse">
+        <div className="mb-4 p-4 rounded-md border-2 border-dashed border-gray-500 bg-gray-100 text-left animate-pulse">
           <strong>ASSISTANT:</strong>
           <div>Generating response ...</div>
         </div>
