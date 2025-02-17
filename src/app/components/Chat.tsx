@@ -69,7 +69,7 @@ export const Chat = ({ messages, isLoading = false }: ChatProps) => {
         );
       })}
       {isLoading && (
-        <div className="mb-4 p-4 rounded-md border-1 border-gray-600 bg-gray-500 text-left animate-pulse">
+        <div className="mb-4 p-4 rounded-md border-1 text-black border-gray-600 bg-gray-500 text-left animate-pulse">
           <strong>ASSISTANT:</strong>
           <div>Generating response ...</div>
         </div>
