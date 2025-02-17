@@ -26,7 +26,7 @@ export const UserInput = ({ onSend }: UserInputProps) => {
   };
 
   return (
-    <div className="relative flex h-[200px] w-[600px] rounded-b-lg">
+    <div className="relative flex h-[200px] max-w-max rounded-b-lg">
       <textarea
         ref={textAreaRef}
         onKeyDown={handleKeyDown}

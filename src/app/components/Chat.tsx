@@ -37,7 +37,7 @@ const markdownComponents = {
 
 export const Chat = ({ messages, isLoading = false }: ChatProps) => {
   return (
-    <div className="w-[600px] max-h-[800px] overflow-auto bg-gray-700 p-4 rounded-t-md">
+    <div className="max-w-max max-h-[800px] overflow-auto bg-gray-700 p-4 rounded-t-md">
       {messages.map((msg, index) => {
         // If the sender is 'user', show "YOU", otherwise show "ASSISTANT"
         const displaySender = msg.sender === "user" ? "YOU" : "ASSISTANT";
