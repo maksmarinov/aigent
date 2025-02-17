@@ -43,8 +43,8 @@ export const Chat = ({ messages, isLoading = false }: ChatProps) => {
         const displaySender = msg.sender === "user" ? "YOU" : "ASSISTANT";
         const isUser = msg.sender === "user";
         const containerClasses = isUser
-          ? "border-2 border-gray-950 bg-gray-900 text-right"
-          : "border-2 border-gray-950 bg-gray-900 text-left";
+          ? "border-1 border-gray-950 bg-gray-900 text-right"
+          : "border-1 border-gray-950 bg-gray-900 text-left";
 
         const content =
           msg.sender !== "user" ? (

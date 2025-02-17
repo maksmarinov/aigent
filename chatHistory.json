@@ -1,28 +1,3 @@
 {
-  "messages": [
-    {
-      "role": "user",
-      "content": "hery",
-      "id": "008bd3bf-9406-4884-a1b7-2c38a65029fb",
-      "createdAt": "2025-02-17T14:27:29.602Z"
-    },
-    {
-      "role": "assistant",
-      "content": "Hello! How can I assist you today?",
-      "id": "addc6ee4-bf45-44dc-b284-9d903320d8bb",
-      "createdAt": "2025-02-17T14:27:30.481Z"
-    },
-    {
-      "role": "user",
-      "content": "howdy",
-      "id": "4258fe02-1f31-433d-b398-bed40216e0e6",
-      "createdAt": "2025-02-17T14:27:37.552Z"
-    },
-    {
-      "role": "assistant",
-      "content": "Howdy! What’s on your mind today?",
-      "id": "6fd7f170-8ad6-460d-a13f-13810a555161",
-      "createdAt": "2025-02-17T14:27:38.333Z"
-    }
-  ]
+  "messages": []
 }

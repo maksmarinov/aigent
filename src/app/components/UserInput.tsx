@@ -1,5 +1,5 @@
 "use client";
-import { useRef, MouseEvent } from "react";
+import { useRef, MouseEvent, KeyboardEvent } from "react";
 
 interface UserInputProps {
   onSend: (message: string) => Promise<void>;
@@ -8,8 +8,8 @@ interface UserInputProps {
 export const UserInput = ({ onSend }: UserInputProps) => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleSubmit = async (event: MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
+  const handleSubmit = async (event?: MouseEvent<HTMLButtonElement>) => {
+    event?.preventDefault();
     if (!textAreaRef.current) return;
     const message = textAreaRef.current.value;
     if (message.trim() !== "") {
@@ -18,10 +18,18 @@ export const UserInput = ({ onSend }: UserInputProps) => {
     }
   };
 
+  const handleKeyDown = async (event: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.ctrlKey && event.key === "Enter") {
+      event.preventDefault();
+      await handleSubmit();
+    }
+  };
+
   return (
     <div className="relative flex h-[200px] w-[600px] rounded-b-lg">
       <textarea
         ref={textAreaRef}
+        onKeyDown={handleKeyDown}
         className="w-full h-full bg-slate-600 text-left pt-2 pl-2 focus:outline-none rounded-b-lg"
         name="userInput"
         id="userInput"
@@ -29,10 +37,11 @@ export const UserInput = ({ onSend }: UserInputProps) => {
       />
       <button
         onClick={handleSubmit}
-        className="absolute right-3 top-[75%] h-[20%] px-4 bg-slate-700 rounded-md"
+        className="absolute right-3 top-[65%] h-[27%] px-4 bg-slate-700 rounded-md flex flex-col items-center"
         type="submit"
       >
-        Ask
+        <span>Ask</span>
+        <span className="text-xs">(ctrl+ent)</span>
       </button>
     </div>
   );
