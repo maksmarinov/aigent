@@ -10,6 +10,7 @@ type ChatMessage = {
 
 export default function Home() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [isAwaitingBotResponse, setIsAwaitingBotResponse] = useState(false);
 
   // Load persisted messages.
   useEffect(() => {
@@ -27,6 +28,7 @@ export default function Home() {
   const handleSendMessage = async (userMessage: string) => {
     // Add local user message.
     setMessages((prev) => [...prev, { sender: "user", text: userMessage }]);
+    setIsAwaitingBotResponse(true);
 
     // Persist user message.
     await fetch("/api/addMessages", {
@@ -64,6 +66,7 @@ export default function Home() {
 
     // Update local state with bot response.
     setMessages((prev) => [...prev, { sender: "bot", text: aiResponseText }]);
+    setIsAwaitingBotResponse(false);
   };
 
   const handleStartNewChat = async () => {
@@ -76,7 +79,7 @@ export default function Home() {
   return (
     <div className="flex flex-col justify-items-center min-h-screen p-1 pb-2 gap-1 sm:p-20">
       <main>MXMR</main>
-      <Chat messages={messages} />
+      <Chat messages={messages} isLoading={isAwaitingBotResponse} />
       <UserInput onSend={handleSendMessage} />
       <div className="flex gap-2">
         <button onClick={handleStartNewChat} className="px-4 py-2 rounded-md">
