@@ -12,7 +12,6 @@ export default function Home() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isAwaitingBotResponse, setIsAwaitingBotResponse] = useState(false);
 
-  // Load persisted messages.
   useEffect(() => {
     (async () => {
       const res = await fetch("/api/getMessages");
@@ -25,12 +24,19 @@ export default function Home() {
     })();
   }, []);
 
+  useEffect(() => {
+    const handleUnload = () => {
+      navigator.sendBeacon("/api/clearChatHistory");
+    };
+
+    window.addEventListener("unload", handleUnload);
+    return () => window.removeEventListener("unload", handleUnload);
+  }, []);
+
   const handleSendMessage = async (userMessage: string) => {
-    // Add local user message.
     setMessages((prev) => [...prev, { sender: "user", text: userMessage }]);
     setIsAwaitingBotResponse(true);
 
-    // Persist user message.
     await fetch("/api/addMessages", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -39,7 +45,6 @@ export default function Home() {
       }),
     });
 
-    // Get conversation memory.
     const memRes = await fetch("/api/getMessages");
     const memory = await memRes.json();
     const conversationHistory = [
@@ -47,7 +52,6 @@ export default function Home() {
       { role: "user", content: userMessage },
     ];
 
-    // Ask AI agent.
     const response = await fetch("/api/askChat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -55,7 +59,6 @@ export default function Home() {
     });
     const { content: aiResponseText } = await response.json();
 
-    // Persist bot response.
     await fetch("/api/addMessages", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -64,7 +67,6 @@ export default function Home() {
       }),
     });
 
-    // Update local state with bot response.
     setMessages((prev) => [...prev, { sender: "bot", text: aiResponseText }]);
     setIsAwaitingBotResponse(false);
   };
