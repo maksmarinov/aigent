@@ -53,8 +53,8 @@ export const Chat = ({ messages, isLoading = false }: ChatProps) => {
         const displaySender = msg.sender === "user" ? "YOU" : "ASSISTANT";
         const isUser = msg.sender === "user";
         const containerClasses = isUser
-          ? "border-0 border-b-2 border-b-gray-800  bg-black text-right"
-          : "border-0 border-b-2 border-b-gray-800  bg-black text-left";
+          ? "border-0 border-b-2 text-white border-b-gray-800  bg-black text-right"
+          : "border-0 border-b-2 text-white border-b-gray-800  bg-black text-left";
 
         const content =
           msg.sender !== "user" ? (
@@ -64,7 +64,7 @@ export const Chat = ({ messages, isLoading = false }: ChatProps) => {
               </ReactMarkdown>
             </div>
           ) : (
-            <div className="whitespace-pre-line">{msg.text}</div>
+            <div className="whitespace-pre-line text-white">{msg.text}</div>
           );
 
         return (
@@ -72,8 +72,8 @@ export const Chat = ({ messages, isLoading = false }: ChatProps) => {
             key={index}
             className={`mb-4 p-4 rounded-md ${containerClasses}`}
           >
-            <strong>{displaySender}:</strong>
-            <div>{content}</div>
+            <strong className="text-white">{displaySender}:</strong>
+            <div className="text-white">{content}</div>
           </div>
         );
       })}
