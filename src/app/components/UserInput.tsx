@@ -31,7 +31,7 @@ export const UserInput = ({ onSend }: UserInputProps) => {
         autoFocus
         ref={textAreaRef}
         onKeyDown={handleKeyDown}
-        className="w-full h-full text-left pt-2 pl-2 focus:outline-none rounded-b-lg  bg-black border-2 border-gray-900"
+        className="w-full h-full text-left pt-2 pl-2 focus:outline-none rounded-b-lg  bg-black border-2 border-gray-900 text-white"
         name="userInput"
         id="userInput"
         style={{ lineHeight: "1.5", resize: "none" }}
@@ -41,8 +41,8 @@ export const UserInput = ({ onSend }: UserInputProps) => {
         className="absolute right-3 top-[65%] h-[27%] px-4  rounded-md flex flex-col items-center  bg-black border-t-2 border-gray-900"
         type="submit"
       >
-        <span>Ask</span>
-        <span className="text-xs">(ctrl+ent)</span>
+        <span className="text-white">Ask</span>
+        <span className="text-white text-xs">(ctrl+ent)</span>
       </button>
     </div>
   );
