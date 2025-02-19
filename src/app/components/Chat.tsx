@@ -16,7 +16,6 @@ interface ChatProps {
 }
 
 const markdownComponents = {
-  // Custom renderer for code blocks
   code({ node, inline, className, children, ...props }: any) {
     const match = /language-(\w+)/.exec(className || "");
     return !inline && match ? (
@@ -51,16 +50,14 @@ export const Chat = ({ messages, isLoading = false }: ChatProps) => {
       className="w-full max-w-[600px] h-full max-h-[850px] overflow-auto bg-gray-700 p-4 rounded-t-md"
     >
       {messages.map((msg, index) => {
-        // If the sender is 'user', show "YOU"; otherwise, show "ASSISTANT"
         const displaySender = msg.sender === "user" ? "YOU" : "ASSISTANT";
         const isUser = msg.sender === "user";
         const containerClasses = isUser
-          ? "border-2 border-gray-950 bg-gray-900 text-right"
-          : "border-2 border-gray-950 bg-gray-900 text-left";
+          ? "border-0 border-b-2 border-b-gray-800 bg-gray-700 text-right"
+          : "border-0 border-b-2 border-b-gray-800 bg-gray-700 text-left";
 
         const content =
           msg.sender !== "user" ? (
-            // Render markdown with custom code block rendering.
             <div className="whitespace-pre-line">
               <ReactMarkdown components={markdownComponents}>
                 {msg.text}
