@@ -28,16 +28,17 @@ export const UserInput = ({ onSend }: UserInputProps) => {
   return (
     <div className="relative flex h-[200px] w-full max-w-[600px] rounded-b-lg">
       <textarea
+        autoFocus
         ref={textAreaRef}
         onKeyDown={handleKeyDown}
-        className="w-full h-full bg-slate-600 text-left pt-2 pl-2 focus:outline-none rounded-b-lg"
+        className="w-full h-full text-left pt-2 pl-2 focus:outline-none rounded-b-lg  bg-black border-2 border-gray-900"
         name="userInput"
         id="userInput"
         style={{ lineHeight: "1.5", resize: "none" }}
       />
       <button
         onClick={handleSubmit}
-        className="absolute right-3 top-[65%] h-[27%] px-4 bg-slate-700 rounded-md flex flex-col items-center"
+        className="absolute right-3 top-[65%] h-[27%] px-4  rounded-md flex flex-col items-center  bg-black border-t-2 border-gray-900"
         type="submit"
       >
         <span>Ask</span>

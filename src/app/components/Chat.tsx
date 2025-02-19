@@ -47,14 +47,14 @@ export const Chat = ({ messages, isLoading = false }: ChatProps) => {
   return (
     <div
       ref={scrollRef}
-      className="w-full max-w-[600px] h-full max-h-[850px] overflow-auto bg-gray-700 p-4 rounded-t-md"
+      className="w-full max-w-[600px] h-full max-h-[850px] overflow-auto  bg-black p-4 rounded-t-md"
     >
       {messages.map((msg, index) => {
         const displaySender = msg.sender === "user" ? "YOU" : "ASSISTANT";
         const isUser = msg.sender === "user";
         const containerClasses = isUser
-          ? "border-0 border-b-2 border-b-gray-800 bg-gray-700 text-right"
-          : "border-0 border-b-2 border-b-gray-800 bg-gray-700 text-left";
+          ? "border-0 border-b-2 border-b-gray-800  bg-black text-right"
+          : "border-0 border-b-2 border-b-gray-800  bg-black text-left";
 
         const content =
           msg.sender !== "user" ? (

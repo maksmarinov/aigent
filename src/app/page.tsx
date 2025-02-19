@@ -84,7 +84,10 @@ export default function Home() {
       <Chat messages={messages} isLoading={isAwaitingBotResponse} />
       <UserInput onSend={handleSendMessage} />
       <div className="flex gap-2">
-        <button onClick={handleStartNewChat} className="px-4 py-2 rounded-md">
+        <button
+          onClick={handleStartNewChat}
+          className="px-4 py-2 rounded-md border-t-2 border-gray-900"
+        >
           New Chat
         </button>
       </div>
