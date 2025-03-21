@@ -78,10 +78,18 @@ export default function Home() {
     setMessages([]);
   };
 
+  const handleStop = () => {
+    setIsAwaitingBotResponse(false);
+  };
+
   return (
     <div className="flex flex-col justify-items-center min-h-screen p-1 pb-2 gap-1 sm:p-20">
       <main>MXMR</main>
-      <Chat messages={messages} isLoading={isAwaitingBotResponse} />
+      <Chat
+        messages={messages}
+        isLoading={isAwaitingBotResponse}
+        onStop={handleStop}
+      />
       <UserInput onSend={handleSendMessage} />
       <div className="flex gap-2">
         <button
