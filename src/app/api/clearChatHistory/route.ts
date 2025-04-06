@@ -6,6 +6,10 @@ export async function POST(request: Request) {
     await clearChatHistory();
     return NextResponse.json({ success: true });
   } catch (error) {
-    return NextResponse.error();
+    console.error("Error clear messages:", error);
+    return NextResponse.json(
+      { error: "Failed to clear messages" },
+      { status: 500 }
+    );
   }
 }

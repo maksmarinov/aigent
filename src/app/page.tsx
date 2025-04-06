@@ -94,7 +94,7 @@ export default function Home() {
       <div className="flex gap-2">
         <button
           onClick={handleStartNewChat}
-          className="px-4 py-2 rounded-md border-t-2 border-gray-900"
+          className="px-4 py-2 rounded-md border-b-2 border-gray-900"
         >
           New Chat
         </button>

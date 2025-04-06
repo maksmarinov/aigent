@@ -1,3 +1,28 @@
 {
-  "messages": []
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hi, chat\n",
+      "id": "a1cc2acd-31b2-46fa-986d-f5de7896a131",
+      "createdAt": "2025-04-06T02:50:44.168Z"
+    },
+    {
+      "role": "assistant",
+      "content": "Hello! How can I assist you today?",
+      "id": "7433ff8d-609f-4c25-90e9-236711546eae",
+      "createdAt": "2025-04-06T02:50:44.844Z"
+    },
+    {
+      "role": "user",
+      "content": "can you provide me with a simple html element for a mailto link?\n",
+      "id": "8962d62a-aab2-4f02-bea4-68bb867c95fe",
+      "createdAt": "2025-04-06T02:52:04.702Z"
+    },
+    {
+      "role": "assistant",
+      "content": "Certainly! Here’s a simple HTML element for a mailto link:\n\n```html\n<a href=\"mailto:example@example.com\">Send Email</a>\n```\n\nYou can replace `example@example.com` with the email address you want to use, and \"Send Email\" with any text you want to display for the link. When users click on the link, it will open their default email client to send an email to that address.",
+      "id": "4f35818c-2e37-4830-b40b-28c5dd4e1559",
+      "createdAt": "2025-04-06T02:52:06.558Z"
+    }
+  ]
 }
